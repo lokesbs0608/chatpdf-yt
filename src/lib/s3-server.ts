@@ -4,7 +4,7 @@ export async function downloadFromS3(file_key: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
       const s3 = new S3({
-        region: "ap-southeast-1",
+        region: "ap-south-1",
         credentials: {
           accessKeyId: process.env.NEXT_PUBLIC_S3_ACCESS_KEY_ID!,
           secretAccessKey: process.env.NEXT_PUBLIC_S3_SECRET_ACCESS_KEY!,
@@ -16,7 +16,7 @@ export async function downloadFromS3(file_key: string): Promise<string> {
       };
 
       const obj = await s3.getObject(params);
-      const file_name = `/tmp/elliott${Date.now().toString()}.pdf`;
+      const file_name = `/tmp/lokesh${Date.now().toString()}.pdf`;
 
       if (obj.Body instanceof require("stream").Readable) {
         // AWS-SDK v3 has some issues with their typescript definitions, but this works
